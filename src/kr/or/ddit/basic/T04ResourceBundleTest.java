@@ -21,7 +21,7 @@ public class T04ResourceBundleTest {
 		
 		while (keys.hasMoreElements()) {
 			String key = keys.nextElement();
-			String value = bundle.getString(key);
+			String value = bundle.getString(key); ///properties의 값들을 가져온다
 			
 			System.out.println(key+" : " +value);
 		}

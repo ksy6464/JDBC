@@ -344,7 +344,12 @@ public class T01MemberInfoTest {
 			
 
 	}
-
+	
+	/**
+	 * 회원 정보가 존재하는지 체크하기 위한 메서드
+	 * @param memId
+	 * @return
+	 */
 	private boolean checkMember(String memId) {
 		
 		

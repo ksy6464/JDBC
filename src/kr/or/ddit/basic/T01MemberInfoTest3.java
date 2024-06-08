@@ -9,7 +9,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Scanner;
 
-import kr.or.ddit.util.JDBCUtil2;
+import kr.or.ddit.util.JDBCUtil3;
 
 /*
 	회원정보를 관리하는 프로그램을 작성하는데 
@@ -40,7 +40,7 @@ create table mymember(
 );
 
 */
-public class T01MemberInfoTest2 {
+public class T01MemberInfoTest3 {
 	
 	///인터페이스타입의 객체 변수 선언
 	private Connection conn;
@@ -108,7 +108,7 @@ public class T01MemberInfoTest2 {
 		System.out.println("-----------------------------------------");
 		
 		try {
-			conn = JDBCUtil2.getConnection();
+			conn = JDBCUtil3.getConnection();
 			
 			stmt = conn.createStatement();
 			
@@ -132,7 +132,7 @@ public class T01MemberInfoTest2 {
 		} catch (SQLException e) {
 			
 		}finally {
-			JDBCUtil2.close(conn, stmt, pstmt, rs);
+			JDBCUtil3.close(conn, stmt, pstmt, rs);
 		}
 		
 		
@@ -153,7 +153,7 @@ public class T01MemberInfoTest2 {
 		//////////////////////////////////////////////////////
 		
 		try {
-			conn = JDBCUtil2.getConnection();
+			conn = JDBCUtil3.getConnection();
 			
 			String sql = " delete from mymember where mem_id = ? ";
 			
@@ -172,7 +172,7 @@ public class T01MemberInfoTest2 {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
-			JDBCUtil2.close(conn, stmt, pstmt, rs);
+			JDBCUtil3.close(conn, stmt, pstmt, rs);
 		}
 	}
 
@@ -218,7 +218,7 @@ public class T01MemberInfoTest2 {
 		
 		try {
 			
-			conn = JDBCUtil2.getConnection();
+			conn = JDBCUtil3.getConnection();
 			
 			String sql = " update mymember set mem_name=?, mem_tel=?, mem_addr=? \r\n" + 
 					"    where mem_id=? ";
@@ -241,7 +241,7 @@ public class T01MemberInfoTest2 {
 		} catch (SQLException ex) {
 			ex.printStackTrace();
 		} finally {
-			JDBCUtil2.close(conn, stmt, pstmt, rs);
+			JDBCUtil3.close(conn, stmt, pstmt, rs);
 		}
 	}
 
@@ -290,14 +290,14 @@ public class T01MemberInfoTest2 {
 //			Class.forName("oracle.jdbc.driver.OracleDriver");
 			/// 이 클래스는 오라클에서 제공해주는 클래스 이름이다 > 연결 안해주면 java.lang.ClassNotFoundException 에러가 난다
 			///드라이브에 있는지 없는지 확인가능
-			///JDBCUtil2하면서 위에부분 지우심
+			///JDBCUtil3하면서 위에부분 지우심
 			
 //			conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe",
 //												"pc07", 
 //												"java");
-			///JDBCUtil2하면서 위에 부분 지우심
+			///JDBCUtil3하면서 위에 부분 지우심
 			
-			conn = JDBCUtil2.getConnection();
+			conn = JDBCUtil3.getConnection();
 			
 			String sql = " insert into mymember(mem_id, mem_name, mem_tel, mem_addr)\r\n" + 
 					" values (?, ?, ?, ?) ";
@@ -326,7 +326,7 @@ public class T01MemberInfoTest2 {
 		} catch (SQLException ex) { /// SQL에서 발생하는 에러의 최상위라서 다 잡을 수 있음
 			ex.printStackTrace();
 		} 
-//			catch (ClassNotFoundException e) { ///이부분 JDBCUtil2만들면서 사라짐
+//			catch (ClassNotFoundException e) { ///이부분 JDBCUtil3만들면서 사라짐
 //			// TODO Auto-generated catch block
 //			e.printStackTrace();
 //		} 
@@ -338,13 +338,13 @@ public class T01MemberInfoTest2 {
 //	         if (pstmt != null) try {pstmt.close();} catch (SQLException ex) {}
 //	         if (stmt != null) try {stmt.close();} catch (SQLException ex) {}
 //	         if (conn != null) try {conn.close();} catch (SQLException ex) {}
-			JDBCUtil2.close(conn, stmt, pstmt, rs);
+			JDBCUtil3.close(conn, stmt, pstmt, rs);
 		}
 
 			
 
 	}
-
+	
 	/**
 	 * 회원 정보가 존재하는지 체크하기 위한 메서드
 	 * @param memId
@@ -360,7 +360,7 @@ public class T01MemberInfoTest2 {
 //				conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe",
 //													"pc07", 
 //													"java");
-			 conn = JDBCUtil2.getConnection();
+			 conn = JDBCUtil3.getConnection();
 				
 				String sql = " select count(*) as cnt from mymember where mem_id=? ";
 				///쿼리 문제 안생기게 앞뒤로 띄어쓰기 한번씩 해주기
@@ -388,7 +388,7 @@ public class T01MemberInfoTest2 {
 			e.printStackTrace();
 		}finally {
 			//자원반남
-			JDBCUtil2.close(conn, stmt, pstmt, rs);
+			JDBCUtil3.close(conn, stmt, pstmt, rs);
 //			 if (rs != null) try {rs.close();} catch (SQLException ex) {}
 //			 if (pstmt != null) try {pstmt.close();} catch (SQLException ex) {}
 //			 if (stmt != null) try {stmt.close();} catch (SQLException ex) {}
@@ -399,7 +399,7 @@ public class T01MemberInfoTest2 {
 	}
 
 	public static void main(String[] args) {
-		T01MemberInfoTest2 memObj = new T01MemberInfoTest2();
+		T01MemberInfoTest3 memObj = new T01MemberInfoTest3();
 		memObj.start();
 	}
 
