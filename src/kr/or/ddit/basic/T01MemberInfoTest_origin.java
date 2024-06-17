@@ -1,14 +1,13 @@
 package kr.or.ddit.basic;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Scanner;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import kr.or.ddit.util.JDBCUtil;
 
@@ -41,7 +40,7 @@ create table mymember(
 );
 
 */
-public class T01MemberInfoTest {
+public class T01MemberInfoTest_origin {
 	
 	///인터페이스타입의 객체 변수 선언
 	private Connection conn;
@@ -51,14 +50,11 @@ public class T01MemberInfoTest {
 	
 	private Scanner scan = new Scanner(System.in); ///스캐너 하나 만들어둠
 	
-	private static final Logger SQL_LOGGER = LogManager.getLogger("log4jexam.sql.Query");
-	private static final Logger PARAM_LOGGER = LogManager.getLogger("log4jexam.sql.Parameter");
-	private static final Logger RESULT_LOGGER = LogManager.getLogger(T01MemberInfoTest.class);
-	
 	/**
 	 * 메뉴를 출력하는 메서드
 	 */
 	public void displayMenu(){
+		System.out.println();
 		System.out.println("----------------------");
 		System.out.println("  === 작 업 선 택 ===");
 		System.out.println("  1. 자료 입력");
@@ -305,9 +301,7 @@ public class T01MemberInfoTest {
 			
 			String sql = " insert into mymember(mem_id, mem_name, mem_tel, mem_addr)\r\n" + 
 					" values (?, ?, ?, ?) ";
-			
-			SQL_LOGGER.debug("쿼리문 : " + sql);
-			
+			///쿼리 문제 안생기게 앞뒤로 띄어쓰기 한번씩 해주기
 			
 			pstmt = conn.prepareStatement(sql);
 			
@@ -316,15 +310,9 @@ public class T01MemberInfoTest {
 			pstmt.setString(3, memTel );
 			pstmt.setString(4, memAddr);
 			
-			PARAM_LOGGER.debug("파라미터 값 : memId=" + memId+", memName="+memName
-					+ ", "+ memTel+", memAddr="+memAddr);
-			
 			int cnt = pstmt.executeUpdate();
 			///쿼리문이 업데이트...리턴값이 인트..업데이트된 행의 개수가 나온다
 			///쿼리문이 섹렉트...리턴값은 리절트타입의 셋 객체...
-			
-			RESULT_LOGGER.info("결과 값 : {}", cnt);
-			
 			if(cnt > 0) {
 				System.out.println(memId+"인 회원정보 등록 성공!");
 			}else {
@@ -411,7 +399,7 @@ public class T01MemberInfoTest {
 	}
 
 	public static void main(String[] args) {
-		T01MemberInfoTest memObj = new T01MemberInfoTest();
+		T01MemberInfoTest_origin memObj = new T01MemberInfoTest_origin();
 		memObj.start();
 	}
 
